@@ -27,6 +27,11 @@
       "@admin/*": ["src/app/admin/*"],
       "@paciente/*": ["src/app/paciente/*"],
       "@doctor/*": ["src/app/doctor/*"],
+      "@contacts/*": ["src/app/admin/modules/contacts/*"],
+      "@dates/*": ["src/app/admin/modules/dates/*"],
+      "@doctors/*": ["src/app/admin/modules/doctors/*"],
+      "@patients/*": ["src/app/admin/modules/patients/*"],
+      "@special_contacts/*": ["src/app/admin/modules/special-contacts/*"],
       "@visitor/*": ["src/app/visitor/*"],
       "exceljs": [
         "node_modules/exceljs/dist/exceljs.min"
