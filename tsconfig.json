@@ -19,7 +19,19 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@model/*": ["src/app/core/model/*"],
+      "@core/*": ["src/app/core/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@admin/*": ["src/app/admin/*"],
+      "@paciente/*": ["src/app/paciente/*"],
+      "@doctor/*": ["src/app/doctor/*"],
+      "@visitor/*": ["src/app/visitor/*"],
+      "exceljs": [
+        "node_modules/exceljs/dist/exceljs.min"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
