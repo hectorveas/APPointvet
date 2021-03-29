@@ -5,5 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class HttpService {
 
+  // Incorporar manejo de errores y manejo de Sentry
   constructor() { }
 }
