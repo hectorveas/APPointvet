@@ -22,6 +22,7 @@
     ],
     "paths": {
       "@model/*": ["src/app/core/model/*"],
+      "@environment/*": ["src/environments/*"],
       "@core/*": ["src/app/core/*"],
       "@shared/*": ["src/app/shared/*"],
       "@admin/*": ["src/app/admin/*"],
