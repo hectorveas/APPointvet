@@ -11,6 +11,7 @@ import { SharedModule } from '@shared/shared.module';
 import { PatientModule } from './patient/patient.module';
 import { DoctorModule } from '@doctor/doctor.module';
 import { AdminModule } from '@admin/admin.module';
+import { VisitorModule } from '@visitor/visitor.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AdminModule } from '@admin/admin.module';
     }),
     CoreModule, SharedModule,
     PatientModule, DoctorModule,
-    AdminModule, HttpClientModule
+    AdminModule, HttpClientModule,
+    VisitorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
