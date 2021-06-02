@@ -14,6 +14,7 @@ import { CoreModule } from '@core/core.module';
 import { DateProviderService } from '@core/providers/dates/date-provider.service';
 import { ContactProviderService } from '@core/providers/contacts/contact-provider.service';
 import { PatientProviderService } from '@core/providers/patients/patient-provider.service';
+import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
 
 const components = [
   LoginScreenComponent,
@@ -27,7 +28,7 @@ const providers = [
 ]
 
 @NgModule({
-  declarations: [...components],
+  declarations: [...components, HomeScreenComponent],
   imports: [
     CommonModule, VisitorRoutingModule,
     ReactiveFormsModule, SharedModule,
