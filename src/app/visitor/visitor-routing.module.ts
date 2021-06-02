@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactusScreenComponent } from './screens/contactus-screen/contactus-screen.component';
 import { FindusScreenComponent } from './screens/findus-screen/findus-screen.component';
+import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { RegisterScreenComponent } from './screens/register-screen/register-screen.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginScreenComponent,
+    component: HomeScreenComponent,
     pathMatch: 'full'
   },
   { path: 'login', component: LoginScreenComponent },
@@ -17,7 +18,7 @@ const routes: Routes = [
   { path: 'encuentranos', component: FindusScreenComponent },
   {
     path: '**',
-    component: LoginScreenComponent
+    component: HomeScreenComponent
   },
 ];
 
