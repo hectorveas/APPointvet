@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContactusScreenFormComponent } from './screens/contactus-screen-form/contactus-screen-form.component';
 import { ContactusScreenComponent } from './screens/contactus-screen/contactus-screen.component';
 import { FindusScreenComponent } from './screens/findus-screen/findus-screen.component';
 import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   { path: 'inicio', component: HomeScreenComponent },
   { path: 'login', component: LoginScreenComponent },
-  { path: 'contactanos', component: ContactusScreenComponent },
+  { path: 'contactanos', component: ContactusScreenFormComponent },
   { path: 'registrate', component: RegisterScreenComponent },
   { path: 'encuentranos', component: FindusScreenComponent },
   {
