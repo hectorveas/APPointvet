@@ -28,6 +28,10 @@ export class NavbarComponent implements OnInit {
   public goToContact(): void{
     this.router.navigate(['/visitor/contactanos']);
   };
+  
+  public goToSession(): void{
+    this.router.navigate(['/visitor/login']);
+  };
 
   public getCurrentRoute(): string{
     if (this.router.url === '/visitor/inicio') return 'visitor';

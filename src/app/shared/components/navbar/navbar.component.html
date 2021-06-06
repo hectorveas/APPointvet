@@ -14,12 +14,12 @@
                     <i class="fas fa-address-book my-1" (click)="goToContact()"> Contactanos</i>
                 </div>
                 <ng-container *ngIf="getCurrentRoute() === 'visitor'; else rutaUser">
-                    <div type="button" class="col-4" style="background-color: #ffffffe0; border-radius: 7px;">
+                    <div type="button" (click)="goToSession()" class="col-4" style="background-color: #ffffffe0; border-radius: 7px;">
                         <i class="fas fa-user my-1"> Identificarse</i>
                     </div>
                 </ng-container>
                 <ng-template #rutaUser>
-                    <div type="button" class="col-4" style="background-color: #ffffffe0; border-radius: 7px;">
+                    <div type="button" (click)="goToSession()" class="col-4" style="background-color: #ffffffe0; border-radius: 7px;">
                         <i class="fas fa-user my-1"> Cerrar Sesion</i>
                     </div>
                 </ng-template>
