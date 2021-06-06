@@ -20,7 +20,8 @@ export class ContactusScreenFormComponent {
     codigo: [null, Validators.required],
     telefono: [null, Validators.compose([
       Validators.required, Validators.minLength(5), Validators.maxLength(20)])
-    ]
+    ],
+    description: [null, Validators.required],
   });
 
   hasUnitNumber = false;
