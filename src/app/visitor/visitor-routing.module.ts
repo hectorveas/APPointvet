@@ -6,19 +6,19 @@ import { FindusScreenComponent } from './screens/findus-screen/findus-screen.com
 import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { RegisterScreenComponent } from './screens/register-screen/register-screen.component';
+import { VisitorModule } from './visitor.module';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'inicio',
-    component: HomeScreenComponent,
-    pathMatch: 'full'
+    children: [
+      { path: 'inicio', component: HomeScreenComponent },
+      { path: 'login', component: LoginScreenComponent },
+      { path: 'contactanos', component: ContactusScreenFormComponent },
+      { path: 'registrate', component: RegisterScreenComponent },
+      { path: 'encuentranos', component: FindusScreenComponent },
+    ]
   },
-  { path: 'inicio', component: HomeScreenComponent },
-  { path: 'login', component: LoginScreenComponent },
-  { path: 'contactanos', component: ContactusScreenFormComponent },
-  { path: 'registrate', component: RegisterScreenComponent },
-  { path: 'encuentranos', component: FindusScreenComponent },
   {
     path: '**',
     redirectTo: 'inicio',
