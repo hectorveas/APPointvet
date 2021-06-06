@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'visitor-home-screen',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeScreenComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-}
+  public goToSearch(): void{
+    this.router.navigate(['']);
+  };
+
+  public goToContact(): void{
+    this.router.navigate(['/visitor/contactanos']);
+  };
+};
