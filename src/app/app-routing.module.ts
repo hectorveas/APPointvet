@@ -5,6 +5,7 @@ import { HomeScreenComponent } from '@visitor/screens/home-screen/home-screen.co
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'visitor/inicio',
     component: HomeScreenComponent,
     pathMatch: 'full'
   },
@@ -30,6 +31,7 @@ const routes: Routes = [
   },
   {
     path: '**',
+    redirectTo: 'visitor/inicio',
     component: HomeScreenComponent
   },
 ];
