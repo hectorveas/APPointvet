@@ -11,7 +11,6 @@ const routes: Routes = [
     path: '',
     canActivate: [AuthGuardGuard],
     children: [
-      { path: 'login', component: DoctorLoginScreenComponent },
       { path: 'me', component: DoctorMeScreenComponent },
       { path: 'help', component: DoctorHelpScreenComponent },
       { path: 'home', component: DoctorHomeScreenComponent },
