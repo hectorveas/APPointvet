@@ -56,6 +56,16 @@
                     </mat-form-field>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <textarea matInput placeholder="Descripción" formControlName="description"></textarea>
+                        <mat-error *ngIf="addressForm.controls['description'].hasError('required')">
+                            Descripción <strong>reqeurida!</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
         </mat-card-content>
         <mat-card-actions>
             <button mat-raised-button class="btn-success" [disabled]="!addressForm?.valid" type="submit">Submit</button>
