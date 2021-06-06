@@ -9,15 +9,18 @@ import { RegisterScreenComponent } from './screens/register-screen/register-scre
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'inicio',
     component: HomeScreenComponent,
     pathMatch: 'full'
   },
+  { path: 'inicio', component: HomeScreenComponent },
   { path: 'login', component: LoginScreenComponent },
   { path: 'contactanos', component: ContactusScreenComponent },
   { path: 'registrate', component: RegisterScreenComponent },
   { path: 'encuentranos', component: FindusScreenComponent },
   {
     path: '**',
+    redirectTo: 'inicio',
     component: HomeScreenComponent
   },
 ];
