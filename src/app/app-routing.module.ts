@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeScreenComponent } from '@visitor/screens/home-screen/home-screen.component';
 
 const routes: Routes = [
-
   {
     path: '',
     redirectTo: 'visitor/inicio',
+    component: HomeScreenComponent,
     pathMatch: 'full'
+  },
+  {
+    path: 'visitor',
+    loadChildren: () => import('./visitor/visitor.module')
+      .then(VisitorModule => VisitorModule.VisitorModule)
   },
   {
     path: 'doctor',
@@ -19,11 +25,6 @@ const routes: Routes = [
       .then(PatientModule => PatientModule.PatientModule)
   },
   {
-    path: 'visitante',
-    loadChildren: () => import('./visitor/visitor.module')
-      .then(VisitorModule => VisitorModule.VisitorModule)
-  },
-  {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module')
       .then(AdminModule => AdminModule.AdminModule)
@@ -31,6 +32,7 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'visitor/inicio',
+    component: HomeScreenComponent
   },
 ];
 

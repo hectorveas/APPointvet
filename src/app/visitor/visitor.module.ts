@@ -14,11 +14,19 @@ import { CoreModule } from '@core/core.module';
 import { DateProviderService } from '@core/providers/dates/date-provider.service';
 import { ContactProviderService } from '@core/providers/contacts/contact-provider.service';
 import { PatientProviderService } from '@core/providers/patients/patient-provider.service';
+import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
+import { ContactusScreenFormComponent } from './screens/contactus-screen-form/contactus-screen-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
 
 const components = [
   LoginScreenComponent,
   RegisterScreenComponent, FindusScreenComponent,
-  ContactusScreenComponent
+  ContactusScreenComponent, HomeScreenComponent,
+  ContactusScreenFormComponent
 ]
 
 const providers = [
@@ -33,6 +41,11 @@ const providers = [
     ReactiveFormsModule, SharedModule,
     PatientModule, DoctorModule,
     CoreModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
   ],
   providers: [...providers],
   exports: [...components]

@@ -12,4 +12,7 @@ export class DoctorHomeScreenComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public potito () {
+    console.log("hola");
+  }
 }
