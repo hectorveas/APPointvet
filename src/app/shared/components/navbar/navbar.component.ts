@@ -22,11 +22,11 @@ export class NavbarComponent implements OnInit {
   };
 
   public goToHome(): void{
-    this.router.navigate(['']);
+    this.router.navigate(['/visitor/inicio']);
   };
   
   public goToContact(): void{
-    this.router.navigate(['']);
+    this.router.navigate(['/visitor/contactanos']);
   };
 
   public getCurrentRoute(): string{
