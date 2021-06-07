@@ -1,0 +1,181 @@
+<div [ngSwitch]="option">
+  <div *ngSwitchCase="1">
+      <form [formGroup]="addressForm1" novalidate (ngSubmit)="onSubmit()">
+          <mat-card class="add-date-card">
+              <mat-card-content>
+                  <div class="row">
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput placeholder="Nombre" formControlName="nombre">
+                              <mat-error *ngIf="addressForm1.controls['nombre'].hasError('required')">
+                                  Nombre <strong>requerido!</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput placeholder="Apellido" formControlName="apellido">
+                              <mat-error *ngIf="addressForm1.controls['apellido'].hasError('required')">
+                                  Apellido <strong>requerido!</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput type="date" placeholder="Fecha" formControlName="fecha">
+                              <mat-error *ngIf="addressForm1.controls['fecha'].hasError('required')">
+                                  Fecha <strong>requerida!</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <textarea matInput #descripcion placeholder="Descripción" formControlName="descripcion"></textarea>
+                              <mat-error *ngIf="addressForm1.controls['descripcion'].hasError('required')">
+                                  Descripción <strong>requerida!</strong>
+                              </mat-error>
+                              <mat-hint align="end">{{descripcion.value.length}} / 250</mat-hint>
+                          </mat-form-field>
+                      </div>
+                  </div>
+              </mat-card-content>
+              <mat-card-actions class="text-end">
+                  <button mat-raised-button type="button" class="btn btn-secondary bg-secondary me-5" style="color: white;" data-bs-dismiss="modal" (click)="addressForm1.reset()">Cancelar</button>
+                  <button mat-raised-button type="submit" [disabled]="!addressForm1.valid" style="color: white;"
+                      [ngStyle]="{'background-color': !addressForm1.valid ? 'gray' : '#D23851' }"
+                  >Enviar</button>
+              </mat-card-actions>
+          </mat-card>
+      </form>
+  </div>
+  <!-- Formulario 2 -->
+  <div *ngSwitchCase="2">
+      <form *ngIf="cita?._id" [formGroup]="addressForm2" novalidate (ngSubmit)="onSubmit()">
+          <mat-card class="modify-date-card">
+              <mat-card-content>
+                  <div class="row">
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput placeholder="{{cita?.pacient}}" formControlName="nombre">
+                              <mat-error *ngIf="addressForm2.controls['nombre'].hasError('required')">
+                                  Nombre <strong>requerido!</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput placeholder="Apellido" formControlName="apellido">
+                              <mat-error *ngIf="addressForm2.controls['apellido'].hasError('required')">
+                                  Apellido <strong>requerido!</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput type="date" placeholder="{{this.date}}" formControlName="fecha">
+                              <mat-error *ngIf="addressForm2.controls['fecha'].hasError('required')">
+                                  Fecha <strong>requerida!</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <textarea matInput #descripcion placeholder="{{cita?.description}}" formControlName="descripcion"></textarea>
+                              <mat-error *ngIf="addressForm2.controls['descripcion'].hasError('required')">
+                                  Descripción <strong>requerida!</strong>
+                              </mat-error>
+                              <mat-hint align="end">{{descripcion.value.length}} / 250</mat-hint>
+                          </mat-form-field>
+                      </div>
+                  </div>
+              </mat-card-content>
+              <mat-card-actions class="text-end">
+                  <button mat-raised-button type="button" class="btn btn-secondary bg-secondary me-5" style="color: white;" data-bs-dismiss="modal" (click)="addressForm2.reset()">Cancelar</button>
+                  <button mat-raised-button type="submit" [disabled]="!addressForm2.valid" style="color: white;"
+                      [ngStyle]="{'background-color': !addressForm2.valid ? 'gray' : '#D23851' }"
+                  >Enviar</button>
+              </mat-card-actions>
+          </mat-card>
+      </form>
+  </div>
+  <!-- Formulario 3 -->
+  <div *ngSwitchCase="3">
+      <form *ngIf="cita?._id" [formGroup]="addressForm3" novalidate (ngSubmit)="onSubmit()">
+          <mat-card class="modify-date-card">
+              <mat-card-content>
+                  <div class="row">
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput placeholder="Nombre" formControlName="nombre">
+                              <mat-error *ngIf="addressForm3.controls['nombre'].hasError('required')">
+                                  Nombre <strong>requerido!</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput placeholder="Apellido" formControlName="apellido">
+                              <mat-error *ngIf="addressForm3.controls['apellido'].hasError('required')">
+                                  Apellido <strong>requerido!</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput #rut placeholder="Rut" formControlName="rut">
+                              <mat-error *ngIf="addressForm3.controls['rut'].hasError('required')">
+                                  Rut <strong>requerido!</strong>
+                              </mat-error>
+                              <mat-hint align="end">{{rut.value.length}} / 10</mat-hint>
+                          </mat-form-field>
+                      </div>
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput placeholder="Teléfono" formControlName="telefono">
+                              <mat-error *ngIf="addressForm3.controls['telefono'].hasError('required')">
+                                  Teléfono <strong>requerido!</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput type="date" placeholder="Fecha" formControlName="fecha">
+                              <mat-error *ngIf="addressForm3.controls['fecha'].hasError('required')">
+                                  Fecha <strong>requerida!</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <mat-form-field class="full-width">
+                              <input matInput type="email" placeholder="Email" formControlName="email">
+                              <mat-error *ngIf="addressForm3.controls['email'].hasError('required')">
+                                  Email <strong>requerida!</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+              </mat-card-content>
+              <mat-card-actions class="text-end">
+                  <button mat-raised-button type="button" class="btn btn-secondary bg-secondary me-5" style="color: white;" data-bs-dismiss="modal" (click)="addressForm3.reset()">Cancelar</button>
+                  <button mat-raised-button type="submit" [disabled]="!addressForm3.valid" style="color: white;"
+                      [ngStyle]="{'background-color': !addressForm3.valid ? 'gray' : '#D23851' }"
+                  >Enviar</button>
+              </mat-card-actions>
+          </mat-card>
+      </form>
+  </div>
+</div>
