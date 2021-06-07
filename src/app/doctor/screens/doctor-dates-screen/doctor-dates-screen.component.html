@@ -1,0 +1,114 @@
+<div class="container-fluid h-100 mx-0 px-0"> 
+    <div class="row mt-2 text-center">
+        <div class="col-4">
+            <button type="button" class="btn" data-bs-toggle="modal" 
+                data-bs-target="#exampleModal"
+                style="background-color: #D23851; color: white;"
+                (click)="setOption(1)"
+            >
+                <i class="fas fa-plus-circle"></i> Agregar cita
+            </button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn" data-bs-toggle="modal" 
+                data-bs-target="#exampleModal"
+                style="background-color: #D23851; color: white;"
+                (click)="setOption(2)"
+            >
+                <i class="fas fa-exchange-alt"></i> Modificar cita
+            </button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn" data-bs-toggle="modal" 
+                data-bs-target="#exampleModal"
+                style="background-color: #D23851; color: white;"
+                (click)="setOption(3)"
+            >
+                <i class="fas fa-trash-alt"></i> Eliminar cita
+            </button>
+        </div>
+    </div>  
+    <div class="row mx-2">
+        <div class="col-lg-3 col mt-2"
+            *ngFor="let cita of (citas$ | async)"
+            (click)="seleccionarCita(cita)"
+        >
+            <dates-module-date-card
+                style="cursor: pointer;"
+                [cita]="cita"
+            ></dates-module-date-card>
+        </div>
+    </div> 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content"
+                [ngSwitch]="opciones"
+            >
+                <div *ngSwitchCase="1">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar cita</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <doctor-modal-form 
+                            [option]="1"
+                        ></doctor-modal-form>
+                    </div>
+                </div>
+                <div *ngSwitchCase="2">
+                    <ng-container *ngIf="citaSeleccionada; else notShowing">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modificar cita</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <doctor-modal-form 
+                                [cita]="citaSeleccionada"
+                                [option]="2"
+                            ></doctor-modal-form>
+                        </div>
+                    </ng-container>
+                    <ng-template #notShowing>
+                        <div class="modal-header bg-danger">
+                            <h5 class="modal-title text-center text-white" id="exampleModalLabel">¡Aviso!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            No ha seleccionado ninguna cita para modificar
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </ng-template>
+                </div>
+                <div *ngSwitchCase="3">
+                    <ng-container *ngIf="citaSeleccionada; else notShowing">
+                        <div class="modal-header bg-danger">
+                            <h5 class="modal-title text-white" id="exampleModalLabel">Eliminar cita</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <doctor-modal-form 
+                                [cita]="citaSeleccionada"
+                                [option]="3"
+                            ></doctor-modal-form>
+                        </div>
+                    </ng-container>
+                    <ng-template #notShowing>
+                        <div class="modal-header bg-danger">
+                            <h5 class="modal-title text-center text-white" id="exampleModalLabel">¡Aviso!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            No ha seleccionado ninguna cita para modificar
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+    <shared-footer></shared-footer>
+</div>
