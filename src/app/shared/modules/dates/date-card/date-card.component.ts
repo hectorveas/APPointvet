@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Appointment } from '@core/models/appointment.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'dates-module-date-card',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DateCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() public cita: Appointment | null;
+  public date: string | null;
+
+  constructor() {
+    this.cita = null;
+    this.date = null;
+  }
 
   ngOnInit(): void {
+    this.date = moment(this.cita?.createdAt).format('LLL');
   }
 
 }
