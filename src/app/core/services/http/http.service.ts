@@ -20,7 +20,7 @@ export class HttpService {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': environment.AUTH_KEY
+        //'Authorization': environment.AUTH_KEY
       })
     };
   }

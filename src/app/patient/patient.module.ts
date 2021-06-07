@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { PatientRoutingModule } from './patient-routing.module';
 import { DateUpdateComponent } from './components/date-update/date-update.component';
-import { UserLoginScreenComponent } from './screens/user-login-screen/user-login-screen.component';
 import { UserHomeScreenComponent } from './screens/user-home-screen/user-home-screen.component';
 import { UserHelpScreenComponent } from './screens/user-help-screen/user-help-screen.component';
 import { UserMeScreenComponent } from './screens/user-me-screen/user-me-screen.component';
@@ -19,7 +18,7 @@ import { DateProviderService } from '@core/providers/dates/date-provider.service
 import { PatientProviderService } from '@core/providers/patients/patient-provider.service';
 
 const components = [
-  DateUpdateComponent, UserLoginScreenComponent,
+  DateUpdateComponent,
   UserHomeScreenComponent, UserHelpScreenComponent,
   UserMeScreenComponent, UserSpecialContactScreenComponent
 ]

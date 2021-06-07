@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { VisitorRoutingModule } from './visitor-routing.module';
-import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { RegisterScreenComponent } from './screens/register-screen/register-screen.component';
 import { FindusScreenComponent } from './screens/findus-screen/findus-screen.component';
 import { ContactusScreenComponent } from './screens/contactus-screen/contactus-screen.component';
@@ -23,7 +22,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 
 const components = [
-  LoginScreenComponent,
   RegisterScreenComponent, FindusScreenComponent,
   ContactusScreenComponent, HomeScreenComponent,
   ContactusScreenFormComponent
