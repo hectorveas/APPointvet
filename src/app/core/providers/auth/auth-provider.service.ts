@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Doctor } from '@core/models/doctor.model';
-import { Paciente } from '@core/models/paciente.model';
+import { PetOwner } from '@core/models/petOwner.models';
+import { Specialist } from '@core/models/specialist.models';
 import { HttpService } from '@core/services/http/http.service';
 import { TokenService } from '@core/services/token/token.service';
 import { Observable } from 'rxjs';
@@ -28,19 +28,19 @@ export class AuthProviderService {
     return this.authenticated;
   }
 
-  public async getCurrentUser(): Promise<Paciente | Doctor>{
+  public async getCurrentUser(): Promise<PetOwner | Specialist>{
     if (!this.currentUser){
-      this.currentUser = await this.httpService.get<Paciente | Doctor>('').toPromise();
+      this.currentUser = await this.httpService.get<PetOwner | Specialist>('').toPromise();
     }
     return this.currentUser;
   }
 
-  public login(auth: { email: string, password: string }): Observable<any> {
-    return this.httpService.post<any>('/login', {
-      email: auth.email,
-      password: auth.password,
-      gethash: true
-    })
+  public login(email: string, password: string): Observable<any> {
+    const user = {
+      email: email,
+      password: password
+    };
+    return this.httpService.post<any>('/login', user)
     .pipe(
       tap((data: any) => {
         this.currentUser = data.user;
@@ -59,6 +59,6 @@ export class AuthProviderService {
     this.currentUser = null;
     this.authenticated = false;
     sessionStorage.removeItem('credentials');
-    this.router.navigate(['visitor/login']);
+    this.router.navigate(['visitor/inicio']);
   }
 }
