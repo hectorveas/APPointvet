@@ -17,13 +17,13 @@ const routes: Routes = [
   },
   {
     path: 'doctor',
-    canActivate: [AuthGuardGuard],
+    //canActivate: [AuthGuardGuard],
     loadChildren: () => import('./doctor/doctor.module')
       .then(DoctorModule => DoctorModule.DoctorModule)
   },
   {
     path: 'paciente',
-    canActivate: [AuthGuardGuard],
+    //canActivate: [AuthGuardGuard],
     loadChildren: () => import('./patient/patient.module')
       .then(PatientModule => PatientModule.PatientModule)
   },
