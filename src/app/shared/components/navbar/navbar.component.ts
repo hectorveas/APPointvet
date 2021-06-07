@@ -13,14 +13,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public getScreenSize(): string {
-    if (screen.width <= 605) return 'enana';
-    if (screen.width <= 809 && screen.width >= 769) return 'enana';
-    if (screen.width <= 993 && screen.width >= 769) return 'enana';
-    if (screen.width <= 1209 && screen.width >= 993) return 'enana';
-    return 'normal';
-  };
-
   public goToHome(): void{
     this.router.navigate(['/visitor/inicio']);
   };
