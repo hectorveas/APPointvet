@@ -36,8 +36,8 @@ export class HttpService {
     return this.httpClient.post<type>(this.baseUrl + path, body, this.httpOptions);
   }
 
-  public patch<type>(path: string, body: any) {
-    return this.httpClient.patch<type>(this.baseUrl + path, body, this.httpOptions);
+  public put<type>(path: string, body: any) {
+    return this.httpClient.put<type>(this.baseUrl + path, body, this.httpOptions);
   }
 
   public delete<type>(path: string){

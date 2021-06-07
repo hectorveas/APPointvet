@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-date-update',
+  selector: 'patient-date-update',
   templateUrl: './date-update.component.html',
   styleUrls: ['./date-update.component.less']
 })
