@@ -1,15 +1,12 @@
-import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { TokenService } from '@core/services/token/token.service';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthInterceptor {
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor{
 
   constructor(
-    @Inject(String)
     private tokenService: TokenService
   ) { }
 
@@ -22,9 +19,7 @@ export class AuthInterceptor {
     const token = this.tokenService.getToken();
     if (token) {
       request = request.clone({
-        setHeaders: {
-          Authorization: token
-        }
+        headers: request.headers.set('Authorization', token)
       });
     }
     return request;
