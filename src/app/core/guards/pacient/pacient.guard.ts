@@ -6,17 +6,17 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardGuard implements CanActivate {
+export class PacientGuard implements CanActivate {
 
   constructor(
-    private authService: AuthProviderService,
+    private authProvider: AuthProviderService,
     private router: Router
   ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.authService.isAuthenticated()) {
+      if (this.authProvider.isAuthenticated(2)) {
         return true;
       } else {
         this.router.navigate(['visitor/inicio']);
