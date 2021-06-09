@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardGuard } from '@core/guards/auth-guard.guard';
+import { AdminGuard } from '@core/guards/admin/admin.guard';
+import { PacientGuard } from '@core/guards/pacient/pacient.guard';
+import { SpecialistGuard } from '@core/guards/specialist/specialist.guard';
 import { HomeScreenComponent } from '@visitor/screens/home-screen/home-screen.component';
 
 const routes: Routes = [
@@ -17,19 +19,19 @@ const routes: Routes = [
   },
   {
     path: 'doctor',
-    canActivate: [AuthGuardGuard],
+    canActivate: [SpecialistGuard],
     loadChildren: () => import('./doctor/doctor.module')
       .then(DoctorModule => DoctorModule.DoctorModule)
   },
   {
     path: 'paciente',
-    canActivate: [AuthGuardGuard],
+    canActivate: [PacientGuard],
     loadChildren: () => import('./patient/patient.module')
       .then(PatientModule => PatientModule.PatientModule)
   },
   {
     path: 'admin',
-    canActivate: [AuthGuardGuard],
+    canActivate: [AdminGuard],
     loadChildren: () => import('./admin/admin.module')
       .then(AdminModule => AdminModule.AdminModule)
   },
