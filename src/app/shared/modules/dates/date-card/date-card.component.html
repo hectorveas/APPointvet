@@ -1,5 +1,9 @@
 <div class="card  border-0 mb-3" style="max-width: 100%;">
     <div [ngSwitch]="cita?.status">
+        <div *ngSwitchCase="1">
+            <i class="fas fa-circle" style= "color: #28a745"></i>
+                Realizada
+        </div>
         <div *ngSwitchCase="2">
             <i class="fas fa-circle" style= "color: #ffc107"></i>
                 Pendiente
@@ -15,6 +19,9 @@
     </div>
     <div class="border border-dark mt-2">
         <ng-container [ngSwitch]="cita?.status">
+            <div class="card-header bg-success"
+                *ngSwitchCase="1"
+            ></div>
             <div class="card-header bg-warning"
                 *ngSwitchCase="2"
             ></div>
@@ -26,10 +33,10 @@
             ></div>
         </ng-container>
         <div class="card-body text-dark">
-            <h5 class="card-title mb-1">Paciente: </h5>{{cita?.pacient}}
+            <h5 class="card-title mb-1">Paciente: </h5>{{cita?.firstName + ' ' + cita?.lastName}}
             <p class="font-weight-bold mt-2 mb-1"
                 style="font-weight: bolder;"
-            >Fecha consulta: </p>{{this.date}}
+            >Fecha consulta: </p>{{cita?.date | date: 'medium'}}
             <p class="font-weight-bold mt-2 mb-1"
                 style="font-weight: bolder;"
             >Descripción: </p>{{cita?.description}}
@@ -38,10 +45,10 @@
             >
                 <p class="font-weight-bold mt-2 mb-1"
                     style="font-weight: bolder;"
-                >Motivo cancelación: </p>{{cita?.cancellationMotive}}
+                >Responsable de cancelación: </p>{{cita?.responsable}}
                 <p class="font-weight-bold mt-2 mb-1"
                     style="font-weight: bolder;"
-                >Responsable de cancelación: </p>{{cita?.responsable}}
+                >Motivo cancelación: </p>{{cita?.cancellationMotive}}
             </div>
         </div>
     </div>
