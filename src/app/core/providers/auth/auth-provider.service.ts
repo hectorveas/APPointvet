@@ -50,7 +50,6 @@ export class AuthProviderService {
       })
         .pipe(
           tap((data: any) => {
-            console.log(data.user.role);
             if ((data.user.role === 'petOwner')) {
               const token: string = data.access_token;
               this.currentUser = {
