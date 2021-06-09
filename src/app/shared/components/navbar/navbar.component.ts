@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthProviderService } from '@core/providers/auth/auth-provider.service';
 
 @Component({
   selector: 'shared-navbar',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit, OnChanges {
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private authProvider: AuthProviderService) { }
 
   ngOnInit(): void {
   }
@@ -30,8 +31,12 @@ export class NavbarComponent implements OnInit, OnChanges {
     this.router.navigate(['/visitor/contactanos']);
   };
   
-  public goToSession(): void{
-    this.router.navigate(['/visitor/login']);
+  public goToSession(route: string): void{
+    if (route === 'visitor') {
+      this.router.navigate(['/visitor/login']);
+    } else {
+      this.authProvider.logout();
+    }
   };
 
   public getCurrentRoute(): string{
