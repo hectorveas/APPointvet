@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, FormGroupDirective} from '@angular/forms';
-import { AuthService } from '@core/services/auth/auth.service';
+import { AuthProviderService } from '@core/providers/auth/auth-provider.service';
 import { FormService } from '@core/services/form/form.service';
 import { NotificationService } from '../../../core/services/notification/notification.service';
 
@@ -13,15 +13,16 @@ import { NotificationService } from '../../../core/services/notification/notific
 export class LoginScreenComponent implements OnInit {
 
   public checkoutForm: FormGroup;
-
+  public opcion: number;
   public passwordVisibility: boolean;
 
 
   constructor(
     private notificationService: NotificationService,
     private formService: FormService,
-    private authService: AuthService,
-  ) { 
+    private authService: AuthProviderService,
+  ) {
+    this.opcion = 1;
     this.checkoutForm;
     this.passwordVisibility = false;
     this.createFormGroup();
@@ -31,13 +32,16 @@ export class LoginScreenComponent implements OnInit {
   }
 
 
+  public setOption(n: number): void {
+    this.opcion = n;
+  };
+
   private createFormGroup() {
     this.checkoutForm = this.formService.buildFormGroup({
-    email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(3)]),
-    password: new FormControl('',[Validators.required]),
-  })
-}
-
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('',[Validators.required, Validators.minLength(9)]),
+    })
+  }
 
   public controlIsRequired(formControlName: string): boolean {
     return this.formService.controlIsRequired(this.checkoutForm, formControlName);
@@ -60,28 +64,23 @@ export class LoginScreenComponent implements OnInit {
   }
 
   public async login(form: FormGroupDirective): Promise<void> {
-   
-    if (this.checkoutForm.valid) {
-      try {
-        await this.authService.login(this.checkoutForm.value).toPromise();
-      } catch (error) {
-        if (error.message === 'Access denied!') {
-          // this.notificationService.error('Tu cuenta no esta registrada como administrador');
-        } else {
-          // this.notificationService.error('Los datos ingresados son incorrectos');
+    if (this.checkoutForm?.valid) {
+        try {
+            await this.authService.login(this.checkoutForm?.value, this.opcion).toPromise();
+        } catch (error) {
+            console.log(error);
+            if (error.message === 'Access denied!') {
+                this.notificationService.error('Tu cuenta no esta registrada');
+                return;
+            } else {
+                this.notificationService.error('Los datos ingresados son incorrectos!');
+                return;
+            }
         }
-      }
     }
   }
-
-  personal(){}
-
-
-  usuario(){}
-
 
   public togglePasswordVisibility(): void {
     this.passwordVisibility = !this.passwordVisibility;
   }
-
 }
