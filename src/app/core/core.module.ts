@@ -6,17 +6,24 @@ import { DoctorService } from './services/doctors/doctor.service';
 import { HttpService } from './services/http/http.service';
 import { PatientService } from './services/patients/patient.service';
 import { SpecialContactService } from './services/specialContacts/special-contact.service';
+import { FormService} from '../core/services/form/form.service'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 const services = [
   ContactService, DatesService,
   DoctorService, HttpService,
-  PatientService, SpecialContactService
+  PatientService, SpecialContactService,
+  FormService
 ]
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [...services]
 })

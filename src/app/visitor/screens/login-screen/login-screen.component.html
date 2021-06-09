@@ -1,1 +1,87 @@
-<p>login-screen works!</p>
+<div class="container-fluid h-100 px-0 mx-0">
+    <shared-navbar></shared-navbar>
+    <div class="row justify-content-center align-items-center marco" style="padding-top: 150px;">
+        <div class="col-12">
+            <div class="container" style="background-color: rgba(211,57,83,0.5); padding-top: 10%;height: 600px;">
+                <div [ngSwitch]="opcion">
+                    <div *ngSwitchCase="1"
+                        class="appoint pt-3 justify-content-center"
+                    >
+                        <img style="margin-top: -45%;" src="./../../../../assets/logoLogin.svg">            
+                    </div>
+                    <div *ngSwitchCase="2"
+                        class="appoint pt-3 justify-content-center"
+                    >
+                        <img style="margin-top: -45%;" src="./../../../../assets/doctorLogo.svg">            
+                    </div>
+                </div>
+                <form [formGroup]="checkoutForm" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                    <div class="user">
+                        <div class="row justify-content-center align-items-center pl-5">
+                            <div class="class col-9 col-sm-6 col-md-5 col-lg-2" (click)="setOption(2)">
+                                <span class="btn" ><img style="margin-top: -50%;" class="mt-1"src="./../../../../assets/doctor.svg">Personal</span> 
+                            </div>
+                            <div class="class col-9 col-sm-6 col-md-5 col-lg-2" (click)="setOption(1)">
+                                <span class="btn"><img style="margin-top: -50%;" class="mt-1"src="./../../../../assets/user.svg">Usuario</span>            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login pt-3 pr-4">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-9 col-sm-6 col-md-5 col-lg-5">
+                                <p>
+                                    <i class="far fa-user me-3"></i>
+                                    <label for="email" class="fw-bolder" style="font-family: 'Rancho', cursive; font-size: 30px;">Login</label>
+                                    <input style="background: rgba(211,57,83,0.5); border-color:white; color: white;"id="email" type="text" class="form-control text-white" formControlName="email" placeholder="correo@ejemplo.com"> 
+                                </p>
+                            </div>
+                            <small class="text-danger ml-2"
+                                *ngIf="controlIsRequired('email') && loginForm.submitted"
+                            >
+                                (Email requerido)
+                            </small>
+                        </div>
+
+                        <div class="row justify-content-center align-items-center py-3 py-lg-4">
+                            <div class="col-9 col-sm-6 col-md-5 col-lg-5">
+                                <i class="fas fa-lock me-3"></i>
+                                <label for="password" class="fw-bolder" style="font-family: 'Rancho', cursive; font-size: 30px;">Password</label>
+                                <input  style ="background:rgba(211,57,83,0.5); border-color:white; color: white;"id="password" type="password" class="form-control"
+                                    formControlName="password"
+                                    placeholder="*******"
+                                >
+                            </div>
+                            <div class="class" style="text-decoration: none; padding-left: 40%;">
+                                <a style="font-family: 'Rancho', cursive; font-size: 19px; padding-left: 24%;" >Olvidaste tu contraseña?</a>
+                            </div>
+                            <small class="text-danger ml-2"
+                                *ngIf="controlIsRequired('password') && loginForm.submitted"
+                            >
+                                (Contraseña requerida)
+                            </small>
+                        </div>
+
+                        <div class="button-group mt-3 col-12">
+                            <div class="row" style="right: 43%; position:absolute">
+                                <button type="submit" class="btn iniciar" style="text-align: center;" [disabled]="!checkoutForm.valid">INICIAR SESIÓN</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="container" style="background-color: rgba(225,218,207,0.5); height: 180px;">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="pt-4" style="font-family: 'Rancho', cursive; font-size: 55px;">¿No tienes una cuenta?</p>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <div class="class justify-content-right mt-0" style="position: absolute; left: 1100px;">
+                            <p style="font-family: 'Rancho', cursive; font-size: 35px;">Crea una al instante!</p>
+                            <span class="col-12" style="font-family: 'Rancho',cursive; font-size:30px; border-radius: 30px; background:rgba(211,57,83,0.5); position: absolute;width: 250px; text-align: center;"><img class="mt-1" src="./../../../../assets/iconRegistro.svg">Registrarse</span> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
