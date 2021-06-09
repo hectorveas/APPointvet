@@ -1,6 +1,10 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Appointment } from '@core/models/appointment.model';
+import { Specialist } from '@core/models/specialist.models';
+import { DateProviderService } from '@core/providers/dates/date-provider.service';
+import { DoctorProviderService } from '@core/providers/doctors/doctor-provider.service';
+import { NotificationService } from '@core/services/notification/notification.service';
 import * as moment from 'moment';
 
 @Component({
@@ -10,56 +14,129 @@ import * as moment from 'moment';
 })
 export class ModalFormComponent implements OnChanges {
   
-  @Input() option: number;
-  @Input() cita: Appointment | null;
-  public date: string | null;
+    @Input() option: number;
+    @Input() cita: Appointment | null;
+    public date: string | null;
 
-  addressForm1 = this.fb.group({
-    nombre: [null, Validators.required],
-    apellido: [null, Validators.required],
-    fecha: [null, Validators.required],
-    descripcion: [null, Validators.compose([
-      Validators.required, Validators.minLength(5), Validators.maxLength(250)])
-    ],
-  });
+    constructor(
+        private fb: FormBuilder,
+        private notificationService: NotificationService,
+        private dateProvider: DateProviderService,
+        private specialistProvider: DoctorProviderService
+    ) {
+        this.option = 0;
+        this.cita = null;
+        this.date = null;
+    };
 
-  addressForm2 = this.fb.group({
-    nombre: [null, Validators.required],
-    apellido: [null, Validators.required],
-    fecha: [null, Validators.required],
-    descripcion: [null, Validators.compose([
-      Validators.required, Validators.minLength(5), Validators.maxLength(250)])
-    ],
-    status: 2
-  });
+    addressForm1 = this.fb.group({
+        firstName: [null, Validators.required],
+        lastName: [null, Validators.required],
+        date: [null, Validators.required],
+        description: [null, Validators.compose([
+            Validators.required, Validators.minLength(5), Validators.maxLength(250)])
+        ],
+    });
 
-  addressForm3 = this.fb.group({
-    nombre: [null, Validators.required],
-    apellido: [null, Validators.required],
-    rut: [null, Validators.compose([
-      Validators.required, Validators.minLength(10), Validators.maxLength(10)])
-    ],
-    telefono: [null, Validators.required],
-    fecha: [null, Validators.required],
-    email: [null, Validators.compose([
-      Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])
-    ]
-  });
+    addressForm2 = this.fb.group({
+        firstName: [null, Validators.required],
+        lastName: [null, Validators.required],
+        date: [null, Validators.required],
+        description: [null, Validators.compose([
+            Validators.required, Validators.minLength(5), Validators.maxLength(250)])
+        ],
+        status: 2
+    });
 
-  hasUnitNumber = false;
+    addressForm3 = this.fb.group({
+        firstName: [null, Validators.required],
+        lastName: [null, Validators.required],
+        rut: [null, Validators.compose([
+            Validators.required, Validators.minLength(10), Validators.maxLength(10)])
+        ],
+        phone: [null, Validators.required],
+        mail: [null, Validators.compose([
+            Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])
+        ]
+    });
 
-  constructor(private fb: FormBuilder) {
-    this.option = 0;
-    this.cita = null;
-    this.date = null;
-  };
+    hasUnitNumber = false;
 
-  ngOnChanges(): void {
-    console.log(this.cita);
-    this.date = moment(this.cita?.createdAt).format('LLL');
-  }
+    ngOnChanges(): void {
+        this.date = moment(this.cita?.createdAt).format('LLL');
+    }
 
-  onSubmit(): void {
-    alert('Thanks!');
-  }
+    private validation(specialist: Specialist, form: FormGroup): boolean {
+        if (
+            specialist?.lastName === form?.value?.lastName &&
+            specialist?.mail === form?.value?.mail &&
+            specialist?.rut === form?.value?.rut &&
+            specialist?.phone === form?.value?.phone &&
+            specialist?.firstName === form?.value?.firstName
+        ) {
+            return true;
+        } else {
+            this.notificationService.error('Los datos ingresados no coinciden con los registrados');
+            this.addressForm3.reset();
+            return false;
+        };
+    };
+
+    async onSubmit(opcion: number): Promise<void> {
+        switch (opcion) {
+            case 1:
+                if (this.addressForm1?.valid) {
+                    try {
+                        await this.dateProvider.postAppointment(this.addressForm1?.value).toPromise()
+                        this.notificationService.success('Su cita ha sido agregada con exito!');
+                        this.addressForm1.reset();
+                        return;
+                    } catch (error) {
+                        this.notificationService.error('No hemos podido ingresar su cita');
+                        return;
+                    };
+                }
+                break;
+            case 2:
+                if (this.addressForm2?.valid) {
+                    try {
+                        await this.dateProvider.updateAppointment(this.cita?._id.toString(),this.addressForm2?.value).toPromise()
+                        this.notificationService.success('Su cita ha sido actualizada con exito!');
+                        this.addressForm2.reset();
+                        return;
+                    } catch (error) {
+                        this.notificationService.error('No hemos podido actualizar su cita');
+                        return;
+                    };
+                }
+                break;
+            case 3:
+                if (this.addressForm3?.valid) {
+                    const specialistRut = this.addressForm3?.value?.rut;
+                    try {
+                        const specialist: Specialist = await this.specialistProvider.getSpecialistByRut(specialistRut).toPromise();
+                        if (this.validation(specialist, this.addressForm3) === true) {
+                            try {
+                                await this.dateProvider.deleteAppointment(this.cita?._id.toString()).toPromise()
+                                this.notificationService.success('Su cita ha sido eliminada con exito!');
+                                this.addressForm3.reset();
+                                return;
+                            } catch (error) {
+                                this.notificationService.error('No hemos podido eliminar su cita');
+                                return;
+                            };
+                        } else {
+                            this.addressForm3.reset();
+                            this.notificationService.error('Los datos ingresados no coinciden con los registrados');
+                            return;
+                        }
+                    } catch (error) {
+                        this.addressForm3.reset();
+                        this.notificationService.error('Los datos ingresados no coinciden con los registrados');
+                        return;
+                    }
+                }
+                break;
+        };
+    };
 }
