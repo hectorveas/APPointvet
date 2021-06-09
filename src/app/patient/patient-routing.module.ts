@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardGuard } from '@core/guards/auth-guard.guard';
+import { PacientGuard } from '@core/guards/pacient/pacient.guard';
 import { HomeScreenComponent } from '@visitor/screens/home-screen/home-screen.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserDatesScreenComponent } from './screens/user-dates-screen/user-dates-screen.component';
@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: '',
     component: SidebarComponent,
-    canActivate: [AuthGuardGuard],
+    canActivate: [PacientGuard],
     children: [
       { path: 'me', component: UserMeScreenComponent },
       { path: 'ayuda', component: UserHelpScreenComponent },
