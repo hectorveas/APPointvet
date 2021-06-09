@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnChanges } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { map } from "rxjs/operators";
+import { TokenService } from '../token/token.service';
 
 interface HttpOptions {
   headers: HttpHeaders
@@ -13,14 +14,15 @@ export class HttpService {
 
   private httpOptions: HttpOptions;
   private baseUrl: string;
+  public token: string;
 
-  constructor(private httpClient: HttpClient) {
-    this.baseUrl = environment.apiBaseUrl;
+  constructor(private httpClient: HttpClient, private tokenService: TokenService) {
+    this.baseUrl = environment.apiBaseUrlDev;
+    this.token = this.tokenService.getToken();
 
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        //'Authorization': environment.AUTH_KEY
       })
     };
   }
@@ -32,7 +34,7 @@ export class HttpService {
       );
   }
 
-  public post<type>(path: string, body: any){
+  public post<type>(path: string, body: any) {
     return this.httpClient.post<type>(this.baseUrl + path, body, this.httpOptions);
   }
 
