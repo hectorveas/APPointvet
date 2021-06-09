@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: '',
     component: SidebarComponent,
-    //canActivate: [AuthGuardGuard],
+    canActivate: [AuthGuardGuard],
     children: [
       { path: 'me', component: UserMeScreenComponent },
       { path: 'ayuda', component: UserHelpScreenComponent },
