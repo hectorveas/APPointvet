@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardGuard } from '@core/guards/auth-guard.guard';
+import { SpecialistGuard } from '@core/guards/specialist/specialist.guard';
 import { HomeScreenComponent } from '@visitor/screens/home-screen/home-screen.component';
 import { DoctorDatesScreenComponent } from './screens/doctor-dates-screen/doctor-dates-screen.component';
 import { DoctorHelpScreenComponent } from './screens/doctor-help-screen/doctor-help-screen.component';
@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: DoctorHomeScreenComponent,
-    canActivate: [AuthGuardGuard],
+    canActivate: [SpecialistGuard],
     children: [
       { path: 'me', component: DoctorMeScreenComponent },
       { path: 'ayuda', component: DoctorHelpScreenComponent },
