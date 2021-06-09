@@ -18,15 +18,15 @@ export class DateProviderService {
     return this.httpService.get<Appointment>(`/appointment/${appointmentId}`);
   };
 
-  public updateAppointment(appoinmentId: string, body: any): Partial<Observable<Appointment>>{
+  public updateAppointment(appoinmentId: string, body: any): Observable<Partial<Appointment>>{
     return this.httpService.put<Appointment>(`/appointment/${appoinmentId}`, body);
   };
 
-  public deleteAppointment(appoinmentId: string): Partial<Observable<Appointment>>{
+  public deleteAppointment(appoinmentId: string): Observable<Appointment>{
     return this.httpService.delete<Appointment>(`/appointment/${appoinmentId}`);
   };
 
-  public postAppointment(appoinmentId: string, body: any): Partial<Observable<Appointment>>{
-    return this.httpService.post<Appointment>(`/appointment/${appoinmentId}`, body);
+  public postAppointment(body: any): Observable<Appointment>{
+    return this.httpService.post<Appointment>(`/appointment`, body);
   };
 }
