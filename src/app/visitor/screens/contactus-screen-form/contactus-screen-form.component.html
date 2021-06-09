@@ -59,6 +59,16 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field class="full-width">
+                        <input matInput type="email" placeholder="Correo" formControlName="mail">
+                        <mat-error *ngIf="addressForm.controls['mail'].hasError('required')">
+                            Correo <strong>reqeurida!</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
                         <textarea matInput placeholder="Descripción" formControlName="description"></textarea>
                         <mat-error *ngIf="addressForm.controls['description'].hasError('required')">
                             Descripción <strong>reqeurida!</strong>
