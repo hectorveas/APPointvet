@@ -21,6 +21,7 @@ export class ContactusScreenFormComponent {
     telefono: [null, Validators.compose([
       Validators.required, Validators.minLength(5), Validators.maxLength(20)])
     ],
+    mail: [null, Validators.required],
     description: [null, Validators.required],
   });
 
