@@ -11,7 +11,7 @@ import { TokenService } from '@core/services/token/token.service';
 })
 export class AuthProviderService {
 
-  private authenticated: boolean;
+  private authenticated: boolean[];
   private currentUser: any;
 
   constructor(
@@ -19,16 +19,23 @@ export class AuthProviderService {
     private tokenService: TokenService,
     private router: Router
   ) {
-    this.authenticated = false;
+    this.authenticated = [false];
     this.currentUser = null;
-
-    if (sessionStorage.getItem('credentials')){
-      this.authenticated = true;
-    }
   }
 
-  isAuthenticated(): boolean {
-    return this.authenticated;
+  isAuthenticated(ruta: number): boolean {
+    if (ruta === 1) { //Admin
+      return this.authenticated[0];
+    } else {
+      if (ruta === 2) { //Pacient
+        return this.authenticated[1];
+      } else {
+        if (ruta === 3) { //Specialist
+          return this.authenticated[2];
+        }
+      }
+    }
+    return false;
   }
 
   getCurrentUser(): any {
@@ -43,17 +50,20 @@ export class AuthProviderService {
       })
         .pipe(
           tap((data: any) => {
+            console.log(data.user.role);
             if ((data.user.role === 'petOwner')) {
               const token: string = data.access_token;
               this.currentUser = {
-                user: data.authenticated,
+                user: data.user._id,
                 role: data.user.role
               };
               this.tokenService.addToken(token);
-              this.authenticated = true;
+              this.authenticated[1] = true;
+                this.authenticated[0] = false;
+                this.authenticated[2] = false;
               this.router.navigate(['paciente/citas']);
             } else {
-              throw (new Error('Access denied!') && this.router.navigate(['visitor/inicio']));
+              throw (this.router.navigate(['visitor/inicio']));
             }
           })
         );
@@ -67,14 +77,16 @@ export class AuthProviderService {
             if ((data.user.role === 'specialist')) {
               const token: string = data.access_token;
               this.currentUser = {
-                user: data.authenticated,
+                user: data.user._id,
                 role: data.user.role
               };
               this.tokenService.addToken(token);
-              this.authenticated = true;
+              this.authenticated[2] = true;
+                this.authenticated[0] = false;
+                this.authenticated[1] = false;
                 this.router.navigate(['doctor/citas']);
             } else {
-              throw (new Error('Access denied!') && this.router.navigate(['visitor/inicio']));
+              throw (this.router.navigate(['visitor/inicio']));
             }
           })
         );
@@ -83,7 +95,7 @@ export class AuthProviderService {
 
   public logout(): void{
     this.currentUser = null;
-    this.authenticated = false;
+    this.authenticated = [false];
     sessionStorage.removeItem('credentials');
     this.router.navigate(['visitor/inicio']);
   }
