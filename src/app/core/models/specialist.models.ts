@@ -7,4 +7,5 @@ export interface Specialist {
   phone?: String,
   mail?: String,
   password?: String,
+  role: String // 'specialist'
 };

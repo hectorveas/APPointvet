@@ -8,4 +8,5 @@ export interface PetOwner {
   passWord?: String,
   pets?: String[],
   veterinaries?: String[],
+  role: String // 'petOwner'
 };
