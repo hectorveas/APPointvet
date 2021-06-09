@@ -68,7 +68,6 @@ export class LoginScreenComponent implements OnInit {
         try {
             await this.authService.login(this.checkoutForm?.value, this.opcion).toPromise();
         } catch (error) {
-            console.log(error);
             if (error.message === 'Access denied!') {
                 this.notificationService.error('Tu cuenta no esta registrada');
                 return;
