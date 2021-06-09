@@ -17,7 +17,7 @@ export class HttpService {
   public token: string;
 
   constructor(private httpClient: HttpClient, private tokenService: TokenService) {
-    this.baseUrl = environment.apiBaseUrlDev;
+    this.baseUrl = environment.apiBaseUrl;
     this.token = this.tokenService.getToken();
 
     this.httpOptions = {
