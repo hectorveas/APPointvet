@@ -10,15 +10,12 @@ import * as moment from 'moment';
 export class DateCardComponent implements OnInit {
 
   @Input() public cita: Appointment | null;
-  public date: string | null;
 
   constructor() {
     this.cita = null;
-    this.date = null;
   }
 
   ngOnInit(): void {
-    this.date = moment(this.cita?.createdAt).format('LLL');
   }
 
 }
