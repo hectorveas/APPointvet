@@ -1,6 +1,7 @@
 export interface PetOwner {
   _id?: string;
-  name?: String,
+  firstName?: String,
+  lastName?: String,
   phone?: String,
   rut?: String,
   mail?: String,
