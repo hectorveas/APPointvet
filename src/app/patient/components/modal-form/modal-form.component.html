@@ -1,21 +1,21 @@
 <div [ngSwitch]="option">
     <div *ngSwitchCase="1">
-        <form [formGroup]="addressForm1" novalidate (ngSubmit)="onSubmit()">
+        <form [formGroup]="addressForm1" novalidate (ngSubmit)="onSubmit(1)">
             <mat-card class="add-date-card">
                 <mat-card-content>
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <input matInput placeholder="Nombre" formControlName="nombre">
-                                <mat-error *ngIf="addressForm1.controls['nombre'].hasError('required')">
+                                <input matInput placeholder="Nombre" formControlName="firstName">
+                                <mat-error *ngIf="addressForm1.controls['firstName'].hasError('required')">
                                     Nombre <strong>requerido!</strong>
                                 </mat-error>
                             </mat-form-field>
                         </div>
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <input matInput placeholder="Apellido" formControlName="apellido">
-                                <mat-error *ngIf="addressForm1.controls['apellido'].hasError('required')">
+                                <input matInput placeholder="Apellido" formControlName="lastName">
+                                <mat-error *ngIf="addressForm1.controls['lastName'].hasError('required')">
                                     Apellido <strong>requerido!</strong>
                                 </mat-error>
                             </mat-form-field>
@@ -24,8 +24,8 @@
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <input matInput type="date" placeholder="Fecha" formControlName="fecha">
-                                <mat-error *ngIf="addressForm1.controls['fecha'].hasError('required')">
+                                <input matInput type="date" placeholder="Fecha" formControlName="date">
+                                <mat-error *ngIf="addressForm1.controls['date'].hasError('required')">
                                     Fecha <strong>requerida!</strong>
                                 </mat-error>
                             </mat-form-field>
@@ -34,8 +34,8 @@
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <textarea matInput #descripcion placeholder="Descripción" formControlName="descripcion"></textarea>
-                                <mat-error *ngIf="addressForm1.controls['descripcion'].hasError('required')">
+                                <textarea matInput #descripcion placeholder="Descripción" formControlName="description"></textarea>
+                                <mat-error *ngIf="addressForm1.controls['description'].hasError('required')">
                                     Descripción <strong>requerida!</strong>
                                 </mat-error>
                                 <mat-hint align="end">{{descripcion.value.length}} / 250</mat-hint>
@@ -44,7 +44,7 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions class="text-end">
-                    <button mat-raised-button type="button" class="btn btn-secondary bg-secondary me-5" style="color: white;" data-bs-dismiss="modal">Cancelar</button>
+                    <button mat-raised-button type="button" class="btn btn-secondary bg-secondary me-5" style="color: white;" data-bs-dismiss="modal" (click)="addressForm1.reset()">Cancelar</button>
                     <button mat-raised-button type="submit" [disabled]="!addressForm1.valid" style="color: white;"
                         [ngStyle]="{'background-color': !addressForm1.valid ? 'gray' : '#D23851' }"
                     >Enviar</button>
@@ -54,22 +54,22 @@
     </div>
     <!-- Formulario 2 -->
     <div *ngSwitchCase="2">
-        <form [formGroup]="addressForm2" novalidate (ngSubmit)="onSubmit()">
+        <form *ngIf="cita?._id" [formGroup]="addressForm2" novalidate (ngSubmit)="onSubmit(2)">
             <mat-card class="modify-date-card">
                 <mat-card-content>
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <input matInput placeholder="Nombre" formControlName="nombre">
-                                <mat-error *ngIf="addressForm2.controls['nombre'].hasError('required')">
+                                <input matInput placeholder="{{cita?.firstName}}" formControlName="firstName">
+                                <mat-error *ngIf="addressForm2.controls['firstName'].hasError('required')">
                                     Nombre <strong>requerido!</strong>
                                 </mat-error>
                             </mat-form-field>
                         </div>
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <input matInput placeholder="Apellido" formControlName="apellido">
-                                <mat-error *ngIf="addressForm2.controls['apellido'].hasError('required')">
+                                <input matInput placeholder="{{cita?.lastName}}" formControlName="lastName">
+                                <mat-error *ngIf="addressForm2.controls['lastName'].hasError('required')">
                                     Apellido <strong>requerido!</strong>
                                 </mat-error>
                             </mat-form-field>
@@ -78,8 +78,8 @@
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <input matInput type="date" placeholder="Fecha" formControlName="fecha">
-                                <mat-error *ngIf="addressForm2.controls['fecha'].hasError('required')">
+                                <input matInput type="date" placeholder="{{this.date}}" formControlName="date">
+                                <mat-error *ngIf="addressForm2.controls['date'].hasError('required')">
                                     Fecha <strong>requerida!</strong>
                                 </mat-error>
                             </mat-form-field>
@@ -88,8 +88,8 @@
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <textarea matInput #descripcion placeholder="Descripción" formControlName="descripcion"></textarea>
-                                <mat-error *ngIf="addressForm2.controls['descripcion'].hasError('required')">
+                                <textarea matInput #descripcion placeholder="{{cita?.description}}" formControlName="description"></textarea>
+                                <mat-error *ngIf="addressForm2.controls['description'].hasError('required')">
                                     Descripción <strong>requerida!</strong>
                                 </mat-error>
                                 <mat-hint align="end">{{descripcion.value.length}} / 250</mat-hint>
@@ -98,7 +98,7 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions class="text-end">
-                    <button mat-raised-button type="button" class="btn btn-secondary bg-secondary me-5" style="color: white;" data-bs-dismiss="modal">Cancelar</button>
+                    <button mat-raised-button type="button" class="btn btn-secondary bg-secondary me-5" style="color: white;" data-bs-dismiss="modal" (click)="addressForm2.reset()">Cancelar</button>
                     <button mat-raised-button type="submit" [disabled]="!addressForm2.valid" style="color: white;"
                         [ngStyle]="{'background-color': !addressForm2.valid ? 'gray' : '#D23851' }"
                     >Enviar</button>
@@ -108,22 +108,22 @@
     </div>
     <!-- Formulario 3 -->
     <div *ngSwitchCase="3">
-        <form [formGroup]="addressForm3" novalidate (ngSubmit)="onSubmit()">
-            <mat-card class="delete-date-card">
+        <form *ngIf="cita?._id" [formGroup]="addressForm3" novalidate (ngSubmit)="onSubmit(3)">
+            <mat-card class="modify-date-card">
                 <mat-card-content>
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <input matInput placeholder="Nombre" formControlName="nombre">
-                                <mat-error *ngIf="addressForm3.controls['nombre'].hasError('required')">
+                                <input matInput placeholder="Nombre" formControlName="firstName">
+                                <mat-error *ngIf="addressForm3.controls['firstName'].hasError('required')">
                                     Nombre <strong>requerido!</strong>
                                 </mat-error>
                             </mat-form-field>
                         </div>
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <input matInput placeholder="Apellido" formControlName="apellido">
-                                <mat-error *ngIf="addressForm3.controls['apellido'].hasError('required')">
+                                <input matInput placeholder="Apellido" formControlName="lastName">
+                                <mat-error *ngIf="addressForm3.controls['lastName'].hasError('required')">
                                     Apellido <strong>requerido!</strong>
                                 </mat-error>
                             </mat-form-field>
@@ -141,8 +141,8 @@
                         </div>
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <input matInput placeholder="Teléfono" formControlName="telefono">
-                                <mat-error *ngIf="addressForm3.controls['telefono'].hasError('required')">
+                                <input matInput placeholder="Teléfono" formControlName="phone">
+                                <mat-error *ngIf="addressForm3.controls['phone'].hasError('required')">
                                     Teléfono <strong>requerido!</strong>
                                 </mat-error>
                             </mat-form-field>
@@ -151,58 +151,21 @@
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <input matInput type="date" placeholder="Fecha" formControlName="fecha">
-                                <mat-error *ngIf="addressForm3.controls['fecha'].hasError('required')">
-                                    Fecha <strong>requerida!</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field class="full-width">
-                                <input matInput type="email" placeholder="Email" formControlName="email">
-                                <mat-error *ngIf="addressForm3.controls['email'].hasError('required')">
+                                <input matInput type="email" placeholder="Correo" formControlName="mail">
+                                <mat-error *ngIf="addressForm3.controls['mail'].hasError('required')">
                                     Email <strong>requerida!</strong>
                                 </mat-error>
                             </mat-form-field>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <mat-form-field class="full-width">
-                                <input matInput #password type="password" placeholder="Contraseña" formControlName="password">
-                                <mat-error *ngIf="addressForm3.controls['password'].hasError('required')">
-                                    Contraseña <strong>requerida!</strong>
-                                </mat-error>
-                                <mat-hint align="end">{{password.value.length - 8}}</mat-hint>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <mat-radio-group formControlName="confirmation">
-                                <div class="row">
-                                    <p class="fs-5" style="font-weight: bolder;"
-                                    >
-                                        ¿Seguro(a) que desea cancelar la cita?
-                                    </p>
-                                    <div class="col">
-                                        <mat-radio-button value="Yes">Si</mat-radio-button>
-                                    </div>
-                                    <div class="col">
-                                        <mat-radio-button value="No">No</mat-radio-button>
-                                    </div>
-                                </div>
-                            </mat-radio-group>
-                        </div>
-                    </div>
                 </mat-card-content>
                 <mat-card-actions class="text-end">
-                    <button mat-raised-button type="button" class="btn btn-secondary bg-secondary me-5" style="color: white;" data-bs-dismiss="modal">Cancelar</button>
-                    <button mat-raised-button type="submit" [disabled]="!addressForm2.valid" style="color: white;"
+                    <button mat-raised-button type="button" class="btn btn-secondary bg-secondary me-5" style="color: white;" data-bs-dismiss="modal" (click)="addressForm3.reset()">Cancelar</button>
+                    <button mat-raised-button type="submit" [disabled]="!addressForm3.valid" style="color: white;"
                         [ngStyle]="{'background-color': !addressForm3.valid ? 'gray' : '#D23851' }"
                     >Enviar</button>
                 </mat-card-actions>
             </mat-card>
         </form>
     </div>
-</div>
+  </div>
