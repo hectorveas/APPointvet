@@ -32,7 +32,10 @@
                 *ngSwitchCase="4"
             ></div>
         </ng-container>
-        <div class="card-body text-dark">
+        <div class="card-body text-dark"
+            [ngStyle]="{'background-color': cita?._id === citaSeleccionada?._id ? '#034f84' : 'white'}"
+            [ngClass]="{'text-white !important': cita?._id === citaSeleccionada?._id}"
+        >
             <h5 class="card-title mb-1">Paciente: </h5>{{cita?.firstName + ' ' + cita?.lastName}}
             <p class="font-weight-bold mt-2 mb-1"
                 style="font-weight: bolder;"
