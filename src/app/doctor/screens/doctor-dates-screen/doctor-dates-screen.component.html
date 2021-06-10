@@ -28,7 +28,7 @@
             </button>
         </div>
     </div>  
-    <div class="row mx-2">
+    <div class="row mx-2 mt-3">
         <div class="col-lg-3 col mt-2"
             *ngFor="let cita of (citas$ | async)"
             (click)="seleccionarCita(cita)"
@@ -36,6 +36,7 @@
             <dates-module-date-card
                 style="cursor: pointer;"
                 [cita]="cita"
+                [citaSeleccionada]="citaSeleccionada"
             ></dates-module-date-card>
         </div>
     </div> 
