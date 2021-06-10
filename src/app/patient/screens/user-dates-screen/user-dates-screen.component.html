@@ -28,7 +28,7 @@
             </button>
         </div>
     </div>  
-    <div class="row mx-2">
+    <div class="row mx-2 mt-3">
         <div class="col-lg-3 col mt-2"
             *ngFor="let cita of (citas$ | async)"
             (click)="seleccionarCita(cita)"
@@ -36,6 +36,7 @@
             <dates-module-date-card
                 style="cursor: pointer;"
                 [cita]="cita"
+                [citaSeleccionada]="citaSeleccionada"
             ></dates-module-date-card>
         </div>
     </div> 
@@ -105,7 +106,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            No ha seleccionado ninguna cita para modificar
+                            No ha seleccionado ninguna cita para eliminar
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
