@@ -16,9 +16,10 @@ export class PacientGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.authProvider.isAuthenticated(2)) {
+      if (this.authProvider.isAuthenticated('patient')) {
         return true;
       } else {
+        console.log(this.authProvider.isAuthenticated('patient'), 'guardia');
         this.router.navigate(['visitor/inicio']);
         return false;
       }

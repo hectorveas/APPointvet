@@ -16,7 +16,7 @@ export class SpecialistGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.authProvider.isAuthenticated(3)) {
+      if (this.authProvider.isAuthenticated('specialist')) {
         return true;
       } else {
         this.router.navigate(['visitor/inicio']);
