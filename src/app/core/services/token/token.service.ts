@@ -18,10 +18,23 @@ export class TokenService {
     sessionStorage.setItem('credentials', encyptedToken);
   }
 
+  addRole(role: string): void {
+    const encyptedToken = this.encrypt(role);
+    sessionStorage.setItem('role', encyptedToken);
+  }
+
   getToken(): string | null {
     const token: string | null = sessionStorage.getItem('credentials');
     if (token) {
       return this.decrypt(token);
+    }
+    return null;
+  }
+
+  getRole(): string | null {
+    const role: string | null = sessionStorage.getItem('role');
+    if (role) {
+      return this.decrypt(role);
     }
     return null;
   }
