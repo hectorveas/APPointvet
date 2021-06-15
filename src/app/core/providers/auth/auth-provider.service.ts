@@ -11,7 +11,9 @@ import { TokenService } from '@core/services/token/token.service';
 })
 export class AuthProviderService {
 
-  private authenticated: boolean[];
+  private authenticatedAdmin: boolean;
+  private authenticatedPatient: boolean;
+  private authenticatedSpecialist: boolean;
   private currentUser: any;
 
   constructor(
@@ -19,19 +21,31 @@ export class AuthProviderService {
     private tokenService: TokenService,
     private router: Router
   ) {
-    this.authenticated = [false];
+    this.authenticatedAdmin = false;
+    this.authenticatedSpecialist = false;
+    this.authenticatedPatient = false;
     this.currentUser = null;
+
+    if (this.tokenService.getRole() === 'admin') {
+      this.authenticatedAdmin = true;
+    };
+    if (this.tokenService.getRole() === 'petOwner') {
+      this.authenticatedPatient = true;
+    };
+    if (this.tokenService.getRole() === 'specialist') {
+      this.authenticatedSpecialist = true;
+    };
   }
 
-  isAuthenticated(ruta: number): boolean {
-    if (ruta === 1) { //Admin
-      return this.authenticated[0];
+  isAuthenticated(ruta: string): boolean {
+    if (ruta.trim() === 'admin') { //Admin
+      return this.authenticatedAdmin;
     } else {
-      if (ruta === 2) { //Pacient
-        return this.authenticated[1];
+      if (ruta.trim() === 'patient') { //Pacient
+        return this.authenticatedPatient;
       } else {
-        if (ruta === 3) { //Specialist
-          return this.authenticated[2];
+        if (ruta.trim() === 'specialist') { //Specialist
+          return this.authenticatedSpecialist;
         }
       }
     }
@@ -56,10 +70,11 @@ export class AuthProviderService {
                 user: data.user._id,
                 role: data.user.role
               };
+              this.tokenService.addRole(this.currentUser.role);
               this.tokenService.addToken(token);
-              this.authenticated[1] = true;
-                this.authenticated[0] = false;
-                this.authenticated[2] = false;
+              this.authenticatedPatient = true;
+                this.authenticatedAdmin = false;
+                this.authenticatedSpecialist = false;
               this.router.navigate(['paciente/citas']);
             } else {
               throw (this.router.navigate(['visitor/inicio']));
@@ -79,11 +94,12 @@ export class AuthProviderService {
                 user: data.user._id,
                 role: data.user.role
               };
+              this.tokenService.addRole(this.currentUser.role);
               this.tokenService.addToken(token);
-              this.authenticated[2] = true;
-                this.authenticated[0] = false;
-                this.authenticated[1] = false;
-                this.router.navigate(['doctor/citas']);
+              this.authenticatedSpecialist = true;
+                this.authenticatedPatient = false;
+                this.authenticatedAdmin = false;
+              this.router.navigate(['doctor/citas']);
             } else {
               throw (this.router.navigate(['visitor/inicio']));
             }
@@ -94,7 +110,9 @@ export class AuthProviderService {
 
   public logout(): void{
     this.currentUser = null;
-    this.authenticated = [false];
+    this.authenticatedSpecialist = false;
+    this.authenticatedPatient = false;
+    this.authenticatedAdmin = false;
     sessionStorage.removeItem('credentials');
     this.router.navigate(['visitor/inicio']);
   }
