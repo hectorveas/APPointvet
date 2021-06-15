@@ -77,7 +77,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "APPointment:build:production"
+              "browserTarget": "APPointment:build:production",
+              "optimization": true,
+              "sourceMap": false,
+              "vendorChunk": true
             }
           }
         },
