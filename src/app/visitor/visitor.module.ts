@@ -20,17 +20,21 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { LoginScreenComponent} from '../visitor/screens/login-screen/login-screen.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { RegisterSpecialistScreenComponent } from './screens/register-specialist-screen/register-specialist-screen.component';
+import { DoctorProviderService } from '@core/providers/doctors/doctor-provider.service';
 
 
 const components = [
   RegisterScreenComponent, FindusScreenComponent,
   ContactusScreenComponent, HomeScreenComponent,
-  ContactusScreenFormComponent, LoginScreenComponent
+  ContactusScreenFormComponent, LoginScreenComponent,
+  RegisterFormComponent, RegisterSpecialistScreenComponent
 ]
 
 const providers = [
   DateProviderService, ContactProviderService,
-  PatientProviderService
+  PatientProviderService, DoctorProviderService
 ]
 
 @NgModule({

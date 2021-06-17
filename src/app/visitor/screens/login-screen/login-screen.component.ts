@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, FormGroupDirective} from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthProviderService } from '@core/providers/auth/auth-provider.service';
 import { FormService } from '@core/services/form/form.service';
 import { NotificationService } from '../../../core/services/notification/notification.service';
@@ -21,6 +22,7 @@ export class LoginScreenComponent implements OnInit {
     private notificationService: NotificationService,
     private formService: FormService,
     private authService: AuthProviderService,
+    private router: Router
   ) {
     this.opcion = 1;
     this.checkoutForm;
@@ -81,5 +83,13 @@ export class LoginScreenComponent implements OnInit {
 
   public togglePasswordVisibility(): void {
     this.passwordVisibility = !this.passwordVisibility;
+  }
+
+  public goToRegister(opcion: number) {
+    if (opcion === 1) { //Paciente
+      this.router.navigate(['visitor/registrate']);
+    } else {
+      this.router.navigate(['visitor/registratePersonal']);
+    }
   }
 }

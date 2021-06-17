@@ -1,0 +1,71 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()"
+  style="box-shadow: 0px 0px 5px 6px #797979 !important"
+>
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title class="text-center">Registrate ahora!</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre" formControlName="firstName">
+            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+              Nombre <strong>requerido!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Apellido" formControlName="lastName">
+            <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
+              Apellido <strong>requerido!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="RUT" formControlName="rut">
+            <mat-error *ngIf="addressForm.controls['rut'].hasError('required')">
+              RUT <strong>requerido!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Teléfono" formControlName="phone">
+            <mat-error *ngIf="addressForm.controls['phone'].hasError('required')">
+              Telefono <strong>requerido!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="email" placeholder="Correo" formControlName="mail">
+            <mat-error *ngIf="addressForm.controls['mail'].hasError('required')">
+              Correo <strong>requerido!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput type="password" #password maxlength="32" placeholder="Contraseña" formControlName="password">
+              <mat-hint align="end">{{password.value.length}}</mat-hint>
+            </mat-form-field>
+          </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="submit" 
+        [disabled]="!addressForm.valid" style="color: white;"
+        [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#D23851' }"
+      >Crear cuenta</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

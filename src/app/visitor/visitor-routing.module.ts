@@ -6,7 +6,7 @@ import { FindusScreenComponent } from './screens/findus-screen/findus-screen.com
 import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { RegisterScreenComponent } from './screens/register-screen/register-screen.component';
-import { VisitorModule } from './visitor.module';
+import { RegisterSpecialistScreenComponent } from './screens/register-specialist-screen/register-specialist-screen.component';
 
 const routes: Routes = [
   {
@@ -16,6 +16,7 @@ const routes: Routes = [
       { path: 'login', component: LoginScreenComponent },
       { path: 'contactanos', component: ContactusScreenFormComponent },
       { path: 'registrate', component: RegisterScreenComponent },
+      { path: 'registratePersonal', component: RegisterSpecialistScreenComponent },
       { path: 'encuentranos', component: FindusScreenComponent },
     ]
   },

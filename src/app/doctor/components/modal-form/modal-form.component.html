@@ -34,9 +34,9 @@
                   <div class="row">
                       <div class="col">
                           <mat-form-field class="full-width">
-                              <textarea matInput #descripcion placeholder="Descripción" formControlName="description"></textarea>
+                              <textarea matInput #descripcion placeholder="Motivio" formControlName="description"></textarea>
                               <mat-error *ngIf="addressForm1.controls['description'].hasError('required')">
-                                  Descripción <strong>requerida!</strong>
+                                  Motivo <strong>requerido!</strong>
                               </mat-error>
                               <mat-hint align="end">{{descripcion.value.length}} / 250</mat-hint>
                           </mat-form-field>
@@ -90,7 +90,7 @@
                           <mat-form-field class="full-width">
                               <textarea matInput #descripcion placeholder="{{cita?.description}}" formControlName="description"></textarea>
                               <mat-error *ngIf="addressForm2.controls['description'].hasError('required')">
-                                  Descripción <strong>requerida!</strong>
+                                  Motivo <strong>requerido!</strong>
                               </mat-error>
                               <mat-hint align="end">{{descripcion.value.length}} / 250</mat-hint>
                           </mat-form-field>

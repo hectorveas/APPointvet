@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'visitor-register-screen',
-  templateUrl: './register-screen.component.html',
-  styleUrls: ['./register-screen.component.less']
+  selector: 'app-register-specialist-screen',
+  templateUrl: './register-specialist-screen.component.html',
+  styleUrls: ['./register-specialist-screen.component.less']
 })
-export class RegisterScreenComponent implements OnInit {
+export class RegisterSpecialistScreenComponent implements OnInit {
 
   constructor(
     private router: Router
