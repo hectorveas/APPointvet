@@ -33,11 +33,16 @@
             *ngFor="let cita of (citas$ | async)"
             (click)="seleccionarCita(cita)"
         >
-            <dates-module-date-card
-                style="cursor: pointer;"
-                [cita]="cita"
-                [citaSeleccionada]="citaSeleccionada"
-            ></dates-module-date-card>
+            <ng-container *ngIf="cita; else Nada">
+                <dates-module-date-card
+                    style="cursor: pointer;"
+                    [cita]="cita"
+                    [citaSeleccionada]="citaSeleccionada"
+                ></dates-module-date-card>
+            </ng-container>
+            <ng-template #Nada>
+                <span class="text-center">No existe ninguna cita registrada</span>
+            </ng-template>
         </div>
     </div> 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
