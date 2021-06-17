@@ -40,8 +40,12 @@
                     <ng-container 
                         *ngIf="getCurrentRoute() === 'paciente'; else Doctor"
                     >
+                        <span mat-menu-item style="cursor: help;"
+                        >
+                            <i class="fas fa-info-circle"> </i> Iniciado como paciente
+                        </span>
                         <button mat-menu-item 
-                        >Me</button>
+                        >Mi Perfil</button>
                         <button mat-menu-item 
                             (click)="this.router.navigate(['/paciente/citas'])"
                         >Citas</button>
@@ -52,8 +56,12 @@
                         <button mat-menu-item (click)="goToHome()">Salir</button>
                     </ng-container>
                     <ng-template #Doctor>
+                        <span mat-menu-item style="cursor: help;"
+                        >
+                            <i class="fas fa-info-circle"> </i> Iniciado como personal médico
+                        </span>
                         <button mat-menu-item 
-                        >Me</button>
+                        >Mi Perfil</button>
                         <button mat-menu-item 
                             (click)="this.router.navigate(['/doctor/citas'])"
                         >Citas</button>
