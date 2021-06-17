@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'visitor-register-screen',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterScreenComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
+
+  public getCurrentRoute(): string {
+    if (this.router.url === '/visito/registrate') return 'paciente';
+    return 'personal';
+  };
 
 }
