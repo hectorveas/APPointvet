@@ -14,7 +14,7 @@ export class HomeScreenComponent implements OnInit {
   }
 
   public goToSearch(): void{
-    this.router.navigate(['']);
+    this.router.navigate(['/visitor/busqueda']);
   };
 
   public goToContact(): void{
