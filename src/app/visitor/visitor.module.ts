@@ -23,13 +23,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { RegisterSpecialistScreenComponent } from './screens/register-specialist-screen/register-specialist-screen.component';
 import { DoctorProviderService } from '@core/providers/doctors/doctor-provider.service';
+import { SearchScreenComponent } from './screens/search-screen/search-screen.component';
 
 
 const components = [
   RegisterScreenComponent, FindusScreenComponent,
   ContactusScreenComponent, HomeScreenComponent,
   ContactusScreenFormComponent, LoginScreenComponent,
-  RegisterFormComponent, RegisterSpecialistScreenComponent
+  RegisterFormComponent, RegisterSpecialistScreenComponent,
+  SearchScreenComponent
 ]
 
 const providers = [

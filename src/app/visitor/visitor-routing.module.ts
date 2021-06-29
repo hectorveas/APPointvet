@@ -7,6 +7,7 @@ import { HomeScreenComponent } from './screens/home-screen/home-screen.component
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { RegisterScreenComponent } from './screens/register-screen/register-screen.component';
 import { RegisterSpecialistScreenComponent } from './screens/register-specialist-screen/register-specialist-screen.component';
+import { SearchScreenComponent } from './screens/search-screen/search-screen.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'registrate', component: RegisterScreenComponent },
       { path: 'registratePersonal', component: RegisterSpecialistScreenComponent },
       { path: 'encuentranos', component: FindusScreenComponent },
+      { path: 'busqueda', component: SearchScreenComponent },
     ]
   },
   {
