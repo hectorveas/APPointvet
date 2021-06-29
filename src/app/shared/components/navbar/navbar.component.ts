@@ -46,6 +46,7 @@ export class NavbarComponent implements OnInit, OnChanges {
     if (this.router.url === '/visitor/registrate') return 'visitor';
     if (this.router.url === '/visitor/registratePersonal') return 'visitor';
     if (this.router.url === '/visitor/encuentranos') return 'visitor';
+    if (this.router.url === '/visitor/busqueda') return 'visitor';
     /* --------------------------- */
     if (this.router.url === '/paciente/me') return 'paciente';
     if (this.router.url === '/paciente/ayuda') return 'paciente';
