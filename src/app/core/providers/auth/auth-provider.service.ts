@@ -77,7 +77,6 @@ export class AuthProviderService {
               };
               this.tokenService.addRole(this.currentUser.role);
               this.tokenService.addToken(token);
-              this.tokenService.addUser(this.currentUser);
               this.authenticatedPatient = true;
                 this.authenticatedAdmin = false;
                 this.authenticatedSpecialist = false;
@@ -107,7 +106,6 @@ export class AuthProviderService {
               };
               this.tokenService.addRole(this.currentUser.role);
               this.tokenService.addToken(token);
-              this.tokenService.addUser(this.currentUser);
               this.authenticatedSpecialist = true;
                 this.authenticatedPatient = false;
                 this.authenticatedAdmin = false;
