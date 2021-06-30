@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthProviderService } from '@core/providers/auth/auth-provider.service';
+import { TokenService } from '@core/services/token/token.service';
 
 @Component({
   selector: 'patient-user-me-screen',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserMeScreenComponent implements OnInit {
 
-  constructor() { }
+  public user: any;
+
+  constructor(
+    private authProvider: AuthProviderService,
+    private tokenService: TokenService
+  ) {
+    this.user = this.getCurrentUser();
+  }
 
   ngOnInit(): void {
   }
+
+  public getCurrentUser(): any {
+    this.user = this.authProvider.getCurrentUser();
+    if ((this.user === null) || (this.user === undefined)) {
+      this.user = this.tokenService.getUser();
+      if (this.user) return this.user;
+    }
+    return this.user;
+  };
 
 }
