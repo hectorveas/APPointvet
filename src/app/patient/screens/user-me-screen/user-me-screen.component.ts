@@ -13,7 +13,6 @@ export class UserMeScreenComponent implements OnInit {
 
   constructor(
     private authProvider: AuthProviderService,
-    private tokenService: TokenService
   ) {
     this.user = this.getCurrentUser();
   }
@@ -23,10 +22,6 @@ export class UserMeScreenComponent implements OnInit {
 
   public getCurrentUser(): any {
     this.user = this.authProvider.getCurrentUser();
-    if ((this.user === null) || (this.user === undefined)) {
-      this.user = this.tokenService.getUser();
-      if (this.user) return this.user;
-    }
     return this.user;
   };
 
