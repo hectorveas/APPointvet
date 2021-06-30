@@ -36,7 +36,8 @@
             [ngStyle]="{'background-color': cita?._id === citaSeleccionada?._id ? '#034f84' : 'white'}"
             [ngClass]="{'text-white !important': cita?._id === citaSeleccionada?._id}"
         >
-            <h5 class="card-title mb-1">Paciente: </h5>{{cita?.firstName + ' ' + cita?.lastName}}
+            <h5 class="card-title mb-1">Dueño: </h5>{{cita?.firstNameOwner + ' ' + cita?.lastNameOwner}}
+            <h6 class="card-title mt-1 mb-1">Paciente: </h6>{{cita?.firstName + ' ' + cita?.lastName}}
             <p class="font-weight-bold mt-2 mb-1"
                 style="font-weight: bolder;"
             >Fecha consulta: </p>{{cita?.date | date: 'medium'}}
