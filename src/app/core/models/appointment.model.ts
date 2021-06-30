@@ -1,6 +1,8 @@
 export interface Appointment {
   // Citas
   _id?: String,
+  firstNameOwner?: String,
+  lastNameOwner?: String,
   firstName?: String,
   lastName?: String,
   description?: String,
