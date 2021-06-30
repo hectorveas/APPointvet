@@ -67,8 +67,13 @@ export class AuthProviderService {
             if ((data.user.role === 'petOwner')) {
               const token: string = data.access_token;
               this.currentUser = {
-                user: data.user._id,
-                role: data.user.role
+                _id: data.user._id,
+                role: data.user.role,
+                firstName: data.user.firstName,
+                lastName: data.user.lastName,
+                mail: data.user.mail,
+                phone: data.user.phone,
+                lastConection: data.user.lastConection
               };
               this.tokenService.addRole(this.currentUser.role);
               this.tokenService.addToken(token);
@@ -91,8 +96,13 @@ export class AuthProviderService {
             if ((data.user.role === 'specialist')) {
               const token: string = data.access_token;
               this.currentUser = {
-                user: data.user._id,
-                role: data.user.role
+                _id: data.user._id,
+                role: data.user.role,
+                firstName: data.user.firstName,
+                lastName: data.user.lastName,
+                mail: data.user.mail,
+                phone: data.user.phone,
+                lastConection: data.user.lastConection
               };
               this.tokenService.addRole(this.currentUser.role);
               this.tokenService.addToken(token);

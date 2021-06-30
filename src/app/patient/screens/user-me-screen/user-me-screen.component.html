@@ -1,11 +1,11 @@
 <div class="container-fluid h-100" style="background: rgba(152, 150, 150, 0.3);">
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-6 my-auto">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-6 my-auto">
             <div class="row h-100">
                 <div class="card mb-3 mx-auto h-100 mt-5" style="max-width: 600px;">
                     <div class="row g-0">
                         <div class="col-md-8 w-100">
-                                <div class="card-text mt-4 mx-3 text-center" style="height: 200px; border-radius: 20px; background-color: #C4C4C4;">
+                                <div class="card-text mt-4 mx-3 text-center" style="height: 150px; border-radius: 20px; background-color: #C4C4C4;">
                                     <div class="row h-100 my-auto align-items-center">
                                         <div class="col">
                                             Imagen aquí
@@ -21,29 +21,80 @@
                                     </div>
                                     <div class="col">
                                         <div class="text-muted text-end">
-                                            <small style="font-family: 'Handlee', cursive;font-size: 17px;">Ultima conexión: 25 de Junio, 2021</small>
+                                            <ng-container *ngIf="user?.lastConection; else vacio1">
+                                                <small style="font-family: 'Handlee', cursive;font-size: 17px;">Ultima conexión: {{user?.lastConection | date: 'mediumDate'}}</small>
+                                            </ng-container>
+                                            <ng-template #vacio1>
+                                                <small style="font-family: 'Handlee', cursive;font-size: 17px;">Ultima conexión: Desconocida</small>
+                                            </ng-template>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body mx-2">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <ng-container *ngIf="user?.firstName || user?.lastName; else vacio2">
+                                                <p class="text-start mb-1" style="font-family: 'Roboto', cursive; font-size: 13px; letter-spacing: 3.5px;">Nombre:</p>
+                                                <span class="text-start mb-0" style="font-family: 'Rancho', cursive; font-size: 22px;">{{user?.firstName + ' ' + user?.lastName}}</span>
+                                            </ng-container>
+                                            <ng-template #vacio2>
+                                                <span class="text-start mb-0" style="font-family: 'Rancho', cursive; font-size: 25px;">Nombre</span>
+                                            </ng-template>
+                                            <hr class="w-100 m-0" style="height: 2px; margin: revert;">
+                                        </div>
+                                        <div class="col-6">
+                                            <ng-container *ngIf="user?.phone; else vacio3">
+                                                <p class="text-start mb-1" style="font-family: 'Roboto', cursive; font-size: 13px; letter-spacing: 3.5px;">Teléfono:</p>
+                                                <span class="text-start mb-0" style="font-family: 'Rancho', cursive; font-size: 22px;">{{user?.phone}}</span>
+                                            </ng-container>
+                                            <ng-template #vacio3>
+                                                <span class="text-start mb-0" style="font-family: 'Rancho', cursive; font-size: 25px;">Teléfono</span>
+                                            </ng-template>
+                                            <hr class="w-100 m-0" style="height: 2px; margin: revert;">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <ng-container *ngIf="user?.mail; else vacio4">
+                                                <p class="text-start mb-1" style="font-family: 'Roboto', cursive; font-size: 13px; letter-spacing: 3.5px;">Correo:</p>
+                                                <span class="text-start mb-0" style="font-family: 'Rancho', cursive; font-size: 22px;">{{user?.mail}}</span>
+                                            </ng-container>
+                                            <ng-template #vacio4>
+                                                <span class="text-start mb-0" style="font-family: 'Rancho', cursive; font-size: 25px;">Correo</span>
+                                            </ng-template>
+                                            <hr class="w-100 m-0" style="height: 2px; margin: revert;">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class="col-md-6 offset-md-3 col-6 offset-3 text-center py-1" style="border-radius: 20px; background-color: #C4C4C4; font-family:'Rancho', cursive; font-size: 25px;">Guardar cambios</div>
+                                    </div>
                                 </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-6 my-auto">
-            <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-6 my-auto">
+            <div class="row mb-5">
                 <div class="card mb-3 mx-auto h-100" style="max-width: 600px;">
                     <div class="row g-0">
                         <div class="col-md-8 w-100">
                                 <div class="card-body">
-                                    <h5 class="card-title" style="font-size: 30px;">Doctores: </h5>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h5 class="card-title m-0" style="font-size: 30px;">Doctores: </h5>
+                                        </div>
+                                        <div class="col-6 text-end align-self-center" style="font-size: 20px;">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <i class="fas fa-search"></i>
+                                                </div>
+                                                <div class="col-7 text-center ms-2" style="border-radius: 20px; background-color: #C4C4C4; font-family:'Rancho', cursive;">Ver más</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <hr class="w-100" style="height: 2px; margin: revert;">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    <p class="card-text text-center my-4" style="letter-spacing: 6.5px; font-family: 'Rancho', cursive;font-size: 40px;">Proximamente</p>
                                 </div>
                         </div>
                     </div>
@@ -54,10 +105,19 @@
                     <div class="row g-0">
                         <div class="col-md-8 w-100">
                             <div class="card-body">
-                                <h5 class="card-title" style="font-size: 30px;">Mascotas: </h5>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h5 class="card-title m-0" style="font-size: 30px;">Mascotas: </h5>
+                                    </div>
+                                    <div class="col-6 text-end align-self-center" style="font-size: 20px;">
+                                        <div class="row">
+                                            <div class="col-2"></div>
+                                            <div class="col-9 text-center ms-2" style="border-radius: 20px; background-color: #C4C4C4; font-family:'Rancho', cursive;">Ver más</div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <hr class="w-100" style="height: 2px; margin: revert;">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p class="card-text text-center my-4" style="letter-spacing: 6.5px; font-family: 'Rancho', cursive;font-size: 40px;">Proximamente</p>
                             </div>
                         </div>
                     </div>
