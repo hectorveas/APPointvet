@@ -31,6 +31,8 @@ export class ModalFormComponent {
     };
 
     addressForm1 = this.fb.group({
+        firstNameOwner: [null, Validators.required],
+        lastNameOwner: [null, Validators.required],
         firstName: [null, Validators.required],
         lastName: [null, Validators.required],
         date: [null, Validators.required],

@@ -4,6 +4,26 @@
             <mat-card class="add-date-card">
                 <mat-card-content>
                     <div class="row">
+                        <h4 style="letter-spacing: 3px; font-family: 'Rancho', cursive;">Dueño</h4>
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="Nombre" formControlName="firstNameOwner">
+                                <mat-error *ngIf="addressForm1.controls['firstNameOwner'].hasError('required')">
+                                    Nombre <strong>requerido!</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="Apellido" formControlName="lastNameOwner">
+                                <mat-error *ngIf="addressForm1.controls['lastNameOwner'].hasError('required')">
+                                    Apellido <strong>requerido!</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h4 style="letter-spacing: 3px; font-family: 'Rancho', cursive;">Paciente</h4>
                         <div class="col">
                             <mat-form-field class="full-width">
                                 <input matInput placeholder="Nombre" formControlName="firstName">
